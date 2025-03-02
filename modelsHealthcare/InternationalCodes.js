@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
-const db = require('../index');
+const db = require('../configDB/db');
 
 const InternationalCodes = db.define('internationalCodes',{
 
 code:{
-    type:Sequelize.STRING,
-
+    type:Sequelize.STRING(50),
+    allowNull: false,
 },
 desc:{
-    type:Sequelize.STRING,
-
+    type:Sequelize.STRING(100),
+    allowNull: false,
 },
 
 },{

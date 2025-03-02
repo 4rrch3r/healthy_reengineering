@@ -1,18 +1,18 @@
 const Sequelize = require('sequelize');
-const db = require('../index');
+const db = require('../configDB/db');
 
 const Patient = db.define('patient',{
 
 name:{
-    type:Sequelize.STRING,
-
+    type:Sequelize.STRING(50),
+    allowNull: false,
 },
 tel:{
-    type:Sequelize.CHAR,
-
+    type:Sequelize.CHAR(7),
+    allowNull: false,
 },
 email:{
-    type:Sequelize.STRING,
+    type:Sequelize.STRING(25),
 },
 DoctorFK: {
     type: Sequelize.INTEGER,

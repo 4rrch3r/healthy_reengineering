@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
-const db = require('../index');
+const db = require('../configDB/db');
 
 const Illness = db.define('illness',{
 
 name:{
-    type:Sequelize.STRING,
-
+    type:Sequelize.STRING(50),
+    allowNull: false,
 },
 beginDate:{
     type:Sequelize.DATE,
-
+    allowNull: false,
 },
 endDate:{
     type:Sequelize.DATE,

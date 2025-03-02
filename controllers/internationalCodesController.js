@@ -7,7 +7,6 @@ const createInternationalCode= async (req, res) => {
         {
             const Illness = await Models.InternationalCodes.create(req.body.data[i]);
         }
-        // const Illness = await Models.InternationalCodes.create(req.body);
         res.status(200).json({'message':'success'});
     }
     catch(err)
