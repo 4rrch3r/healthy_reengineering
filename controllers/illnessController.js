@@ -1,61 +1,57 @@
 const Models = require("../models/index");
 
+const modelName = "Illness"; // Підйом поля
+
+// Підйом методу
+const sendSuccess = (res, data) => res.status(200).json(data);
+const sendError = (res, err) => res.status(500).json({ message: err.message });
+
 const createIllness = async (req, res) => {
   try {
-    const Illness = await Models.Illness.create(req.body);
-    res.status(200).json(Illness);
+    const illness = await Models[modelName].create(req.body);
+    sendSuccess(res, illness);
   } catch (err) {
-    res.status(500).json({
-      message: error.message,
-    });
+    sendError(res, err);
   }
 };
 
 const getIllnesses = async (req, res) => {
   try {
-    const Illnesses = await Models.Illness.findAll();
-    res.status(200).json(Illnesses);
+    const illnesses = await Models[modelName].findAll();
+    sendSuccess(res, illnesses);
   } catch (err) {
-    res.status(500).json({
-      message: error.message,
-    });
+    sendError(res, err);
   }
 };
 
 const getIllness = async (req, res) => {
   try {
-    const Illness = await Models.Illness.findOne({
+    const illness = await Models[modelName].findOne({
       where: { id: req.params.id },
     });
-    res.status(200).json(Illness);
+    sendSuccess(res, illness);
   } catch (err) {
-    res.status(500).json({
-      message: error.message,
-    });
+    sendError(res, err);
   }
 };
 
 const updateIllness = async (req, res) => {
   try {
-    const Illness = await Models.Illness.update(req.body, {
+    const updated = await Models[modelName].update(req.body, {
       where: { id: req.params.id },
     });
-    res.status(200).json(Illness);
+    sendSuccess(res, updated);
   } catch (err) {
-    res.status(500).json({
-      message: error.message,
-    });
+    sendError(res, err);
   }
 };
 
 const deleteIllness = async (req, res) => {
   try {
-    await Models.Illness.destroy({ where: { id: req.params.id } });
-    res.status(200).json({});
+    await Models[modelName].destroy({ where: { id: req.params.id } });
+    sendSuccess(res, {});
   } catch (err) {
-    res.status(500).json({
-      message: error.message,
-    });
+    sendError(res, err);
   }
 };
 
